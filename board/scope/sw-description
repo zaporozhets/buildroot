@@ -1,0 +1,23 @@
+software =
+{
+	version = "@@FW_VERSION@@";
+
+	scope = {
+        hardware-compatibility: [ "0.0" ];
+		images: (
+			{
+				filename = "rootfs.ext2.gz";
+				device = "/dev/update";
+				type = "raw";
+				compressed = true;
+			}
+		);
+	
+		scripts: (
+			{
+				filename = "update.sh";
+				type = "shellscript";
+			 }
+		);
+	};
+}

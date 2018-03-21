@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount partition with uboot env
+
+[Mount]
+What=/dev/mmcblk1p1
+Where=/mnt/ubootenv/
+Type=vfat
+Options=defaults
+
+[Install]
+WantedBy=multi-user.target
+

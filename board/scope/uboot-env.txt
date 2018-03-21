@@ -1,0 +1,56 @@
+###############################################################################
+# Basic info
+###############################################################################
+
+arch=arm
+baudrate=115200
+board=sunxi
+board_name=sunxi
+
+bootdelay=2
+cpu=armv7
+
+
+kernel_addr_r=0x42000000
+fdt_addr_r=0x43000000
+fdt_high=ffffffff
+
+soc=sunxi
+stderr=serial,vga
+stdin=serial,usbkbd
+stdout=serial,vga
+
+###############################################################################
+# Boot script
+###############################################################################
+default_env=1
+
+uboot_mmcdev=1
+linux_mmcdev=1
+bootpart=2
+
+kernel_file=/boot/zImage
+fdt_file=/boot/scope.dtb
+
+mmcargs=setenv bootargs console=ttyS0,115200 earlyprintk root=/dev/mmcblk${linux_mmcdev}p${bootpart} rootwait rw
+
+check_env=echo Check environment; \
+        if test 1 = ${default_env}; then \
+            echo Save environment in eMMC; \
+            setenv default_env 0; \
+            saveenv; \
+        fi
+
+loadkernel=ext2load mmc ${uboot_mmcdev}:${bootpart} ${kernel_addr_r} ${kernel_file}
+loadfdt=ext2load mmc ${uboot_mmcdev}:${bootpart} ${fdt_addr_r} ${fdt_file}
+
+mmcboot=echo Booting from /dev/mmcblk${linux_mmcdev}p${bootpart}; \
+        run check_env; \
+        run mmcargs; \
+        run loadfdt; \
+        run loadkernel; \
+        bootz ${kernel_addr_r} - ${fdt_addr_r};
+
+umsboot=ums mmc ${uboot_mmcdev}
+
+bootcmd=run mmcboot
