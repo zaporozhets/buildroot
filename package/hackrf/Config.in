@@ -1,0 +1,12 @@
+config BR2_PACKAGE_HACKRF
+	bool "hackrf"
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	help
+	  Library and tools for accessing HackRF SDR boards.
+
+	  https://github.com/mossmann/hackrf/tree/master/host
+
+comment "hackrf needs a toolchain w/ threads"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS
+    depends on BR2_PACKAGE_FFTW_PRECISION_SINGLE
+
