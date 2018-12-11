@@ -6,7 +6,7 @@ software =
         hardware-compatibility: [ "0.0" ];
 		images: (
 			{
-				filename = "rootfs.ext2.gz";
+				filename = "rootfs.ext4.gz";
 				device = "/dev/update";
 				type = "raw";
 				compressed = true;

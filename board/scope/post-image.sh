@@ -33,9 +33,9 @@ function MAIN
     (
         cd ${BINARIES_DIR}/
 
-        gzip -k -f rootfs.ext2
+        gzip -k -f rootfs.ext4
 
-        FILES="sw-description rootfs.ext2.gz update.sh"
+        FILES="sw-description rootfs.ext4.gz update.sh"
 
         for i in $FILES;do
             echo $i;done | cpio -ov -H crc > ${SWU_FNAME}
