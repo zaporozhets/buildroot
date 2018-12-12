@@ -26,7 +26,7 @@ stdout=serial,vga
 default_env=1
 
 uboot_mmcdev=1
-linux_mmcdev=1
+linux_mmcdev=0
 bootpart=2
 
 kernel_file=/boot/zImage

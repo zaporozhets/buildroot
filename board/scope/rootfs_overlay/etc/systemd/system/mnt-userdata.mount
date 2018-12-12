@@ -2,7 +2,7 @@
 Description=Mount partition with user data
 
 [Mount]
-What=/dev/mmcblk1p4
+What=/dev/mmcblk0p4
 Where=/mnt/userdata/
 Type=ext4
 Options=defaults
